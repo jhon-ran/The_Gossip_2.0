@@ -1,0 +1,33 @@
+<h1>Hello, Rails!</h1>
+
+<%= link_to 'New Gossip', new_gossip_path %>
+
+<h1>Listing Articles</h1>
+ 
+
+<table>
+  <tr>
+    <th>User</th>
+    <th></th>
+    <th>Title</th>
+    <th>Text</th>
+    <th colspan="4"></th>
+  </tr>
+  <% @gossips.each do |gossip| %>
+    <tr>
+      <td><%= gossip.user.first_name %></td>
+      <td><%= gossip.user.city.name %></td>
+      <td><%= link_to 'See user', user_path(gossip.user)%></td>
+
+      <td><%= gossip.title %></td>
+      <td><%= gossip.text %></td>
+    
+    
+      <td><%= link_to 'Show', gossip_path(gossip) %></td>
+      <td><%= link_to 'Edit', edit_gossip_path(gossip) %></td>
+      <td><%= link_to 'Destroy', gossip_path(gossip),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+
+  <% end %>
+</table>
